@@ -207,7 +207,7 @@ class SqliteDict(DictClass):
         self.conn.execute(ADD_ITEM, (dumps(key), encode(value)))
 
     def __delitem__(self, key):
-        if dumps(key) not in self:
+        if key not in self:
             raise KeyError(key)
         DEL_ITEM = 'DELETE FROM %s WHERE key = ?' % self.tablename
         self.conn.execute(DEL_ITEM, (dumps(key),))

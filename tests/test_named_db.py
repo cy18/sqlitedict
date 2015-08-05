@@ -3,7 +3,7 @@ import tempfile
 import unittest
 
 # local
-import sqlitedict
+import sqlitedict2
 from test_temp_db import TempSqliteDictTest
 from test_core import TestCaseBackport
 from accessories import norm_file
@@ -12,7 +12,7 @@ from accessories import norm_file
 class InMemorySqliteDictTest(TempSqliteDictTest):
 
     def setUp(self):
-        self.d = sqlitedict.SqliteDict(filename=':memory:', autocommit=True)
+        self.d = sqlitedict2.SqliteDict(filename=':memory:', autocommit=True)
 
     def tearDown(self):
         self.d.terminate()
@@ -21,15 +21,15 @@ class InMemorySqliteDictTest(TempSqliteDictTest):
 class NamedSqliteDictTest(TempSqliteDictTest):
 
     def setUp(self):
-        db = norm_file('tests/db/sqlitedict-with-def.sqlite')
-        self.d = sqlitedict.SqliteDict(filename=db)
+        db = norm_file('tests/db/sqlitedict2-with-def.sqlite')
+        self.d = sqlitedict2.SqliteDict(filename=db)
 
 
 class CreateNewSqliteDictTest(TempSqliteDictTest):
 
     def setUp(self):
-        db = norm_file('tests/db/sqlitedict-with-n-flag.sqlite')
-        self.d = sqlitedict.SqliteDict(filename=db, flag="n")
+        db = norm_file('tests/db/sqlitedict2-with-n-flag.sqlite')
+        self.d = sqlitedict2.SqliteDict(filename=db, flag="n")
 
     def tearDown(self):
         self.d.terminate()
@@ -38,8 +38,8 @@ class CreateNewSqliteDictTest(TempSqliteDictTest):
 class StartsWithEmptySqliteDictTest(TempSqliteDictTest):
 
     def setUp(self):
-        db = norm_file('tests/db/sqlitedict-with-w-flag.sqlite')
-        self.d = sqlitedict.SqliteDict(filename=db, flag="w")
+        db = norm_file('tests/db/sqlitedict2-with-w-flag.sqlite')
+        self.d = sqlitedict2.SqliteDict(filename=db, flag="w")
 
     def tearDown(self):
         self.d.terminate()
@@ -49,9 +49,8 @@ class StartsWithEmptySqliteDictTest(TempSqliteDictTest):
 class SqliteDictAutocommitTest(TempSqliteDictTest):
 
     def setUp(self):
-        db = norm_file('tests/db/sqlitedict-autocommit.sqlite')
-        self.d = sqlitedict.SqliteDict(filename=db, autocommit=True)
+        db = norm_file('tests/db/sqlitedict2-autocommit.sqlite')
+        self.d = sqlitedict2.SqliteDict(filename=db, autocommit=True)
 
     def tearDown(self):
         self.d.terminate()
-

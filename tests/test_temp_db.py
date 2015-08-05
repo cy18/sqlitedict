@@ -1,5 +1,5 @@
 import unittest
-import sqlitedict
+import sqlitedict2
 
 from accessories import TestCaseBackport
 
@@ -9,7 +9,7 @@ _major_version=version_info[0]
 class TempSqliteDictTest(TestCaseBackport):
 
     def setUp(self):
-        self.d = sqlitedict.SqliteDict()
+        self.d = sqlitedict2.SqliteDict()
 
     def tearDown(self):
         self.d.close()
@@ -17,7 +17,7 @@ class TempSqliteDictTest(TestCaseBackport):
     def test_create_sqlitedict(self):
         ''' test_create_sqlitedict
         '''
-        self.assertIsInstance(self.d, sqlitedict.SqliteDict)
+        self.assertIsInstance(self.d, sqlitedict2.SqliteDict)
         self.assertEqual(dict(self.d), {})
         self.assertEqual(list(self.d), [])
         self.assertEqual(len(self.d), 0)
